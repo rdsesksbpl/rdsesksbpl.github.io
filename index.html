@@ -1,104 +1,972 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stay Tuned</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RD Shikshan Evam Samaj Kalyan Samiti</title>
+    <meta name="description" content="RD Shikshan Evam Samaj Kalyan Samiti is a non-profit organization dedicated to education, skill development, women empowerment, and community welfare in Bhopal, Madhya Pradesh.">
+    
+    <!-- Google Fonts & Material Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #000;
-    }
+    <style>
+        /* ==========================================
+           2026 ULTRA-PREMIUM DESIGN SYSTEM 
+           ========================================== */
+        :root {
+            /* Stark, High-End Palette */
+            --md-sys-color-primary: #000000; /* Pure Onyx Black */
+            --md-sys-color-on-primary: #ffffff;
+            --md-sys-color-primary-container: #d1fae5;
+            --md-sys-color-secondary: #059669; /* Vivid Emerald */
+            
+            /* Glassmorphism Surfaces */
+            --md-sys-color-surface: rgba(255, 255, 255, 0.75);
+            --md-sys-color-surface-variant: rgba(255, 255, 255, 0.4);
+            --md-sys-color-on-surface: #09090b;
+            --md-sys-color-on-surface-variant: #52525b;
+            --md-sys-color-outline: rgba(255, 255, 255, 1);
+            
+            /* Extreme Border Radii for Bento Aesthetic */
+            --border-radius-sm: 16px;
+            --border-radius-md: 32px;
+            --border-radius-lg: 48px;
+            --border-radius-full: 9999px;
 
-    .page {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #000;
-      overflow: hidden;
-    }
+            /* Luxury Floating Shadows */
+            --elevation-1: 0 10px 40px -10px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.6);
+            --elevation-2: 0 20px 60px -15px rgba(0,0,0,0.12), inset 0 0 0 1px rgba(255,255,255,0.8);
+            --elevation-hover: 0 30px 60px -15px rgba(5, 150, 105, 0.2), inset 0 0 0 1px rgba(255,255,255,1);
 
-    .poster {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+            --transition-standard: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --section-padding: 8rem 2rem;
+            
+            /* Forcing Outfit for a geometric, modern look everywhere */
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Outfit', sans-serif; 
+        }
 
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.65)),
-        rgba(0,0,0,.15);
-    }
+        /* Base Resets & Animated Mesh Background */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-family: var(--font-body); color: var(--md-sys-color-on-surface); }
+        
+        body { 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+            background-color: #f4f4f5;
+            /* 2026 Mesh Gradient Background */
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(209, 250, 229, 0.7) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(224, 231, 255, 0.7) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(254, 226, 226, 0.5) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(243, 232, 255, 0.7) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
 
-    .content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      color: white;
-      padding: 30px;
-      text-shadow: 0 3px 15px rgba(0,0,0,.8);
-    }
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 800; line-height: 1.1; color: var(--md-sys-color-on-surface); letter-spacing: -0.04em; }
+        a { text-decoration: none; color: inherit; transition: all var(--transition-standard); }
+        img { max-width: 100%; height: auto; display: block; border-radius: var(--border-radius-md); }
+        
+        /* High-Fashion Typography */
+        .display-large { font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 900; letter-spacing: -0.05em; line-height: 1; }
+        .headline-medium { font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.04em; }
+        .title-medium { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+        .body-large { font-size: 1.25rem; color: var(--md-sys-color-on-surface-variant); font-weight: 400; }
+        .label-small { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; }
 
-    .content h1 {
-      font-size: clamp(42px, 7vw, 100px);
-      font-weight: 800;
-      letter-spacing: 5px;
-      margin-bottom: 16px;
-    }
+        .container { max-width: 1300px; margin: 0 auto; width: 100%; }
+        .text-center { text-align: center; }
+        .mt-2 { margin-top: 1rem; } .mb-2 { margin-bottom: 1rem; }
+        .mt-4 { margin-top: 2.5rem; } .mb-4 { margin-bottom: 2.5rem; }
 
-    .content p {
-      font-size: clamp(18px, 2.5vw, 32px);
-      letter-spacing: 2px;
-      opacity: .95;
-    }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
 
-    .badge {
-      display: inline-block;
-      margin-bottom: 22px;
-      padding: 9px 18px;
-      border: 1px solid rgba(255,255,255,.65);
-      border-radius: 999px;
-      background: rgba(0,0,0,.3);
-      backdrop-filter: blur(6px);
-      font-size: 13px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
+        /* Premium Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+            padding: 1.2rem 2.5rem; border-radius: var(--border-radius-full);
+            font-weight: 700; border: none; cursor: pointer;
+            transition: all var(--transition-standard);
+            text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.9rem;
+            position: relative; overflow: hidden;
+        }
+        .btn-primary { background: var(--md-sys-color-primary); color: white; box-shadow: 0 15px 30px -10px rgba(0,0,0,0.5); }
+        .btn-primary:hover { background: var(--md-sys-color-secondary); transform: translateY(-5px) scale(1.02); box-shadow: 0 20px 40px -10px rgba(5, 150, 105, 0.5); }
+        
+        .btn-secondary { background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); color: var(--md-sys-color-primary); box-shadow: var(--elevation-1); }
+        .btn-secondary:hover { background: white; transform: translateY(-5px); box-shadow: var(--elevation-2); color: var(--md-sys-color-secondary); }
+        
+        .chip-location {
+            display: inline-flex; align-items: center; gap: 10px; padding: 12px 28px; 
+            border-radius: var(--border-radius-full); background: rgba(255,255,255,0.2); 
+            color: white; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+            backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.3);
+            margin-bottom: 2.5rem; animation: float 6s ease-in-out infinite; font-size: 0.85rem;
+        }
 
-    @media (max-width: 600px) {
-      .content h1 {
-        letter-spacing: 2px;
-      }
-    }
-  </style>
+        /* Floating Pill Header */
+        .header { 
+            position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
+            width: 95%; max-width: 1200px;
+            background: rgba(255, 255, 255, 0.6); 
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            z-index: 1000; transition: all var(--transition-standard); 
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: var(--border-radius-full);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.1);
+        }
+        .header.scrolled { 
+            top: 12px; background: rgba(255, 255, 255, 0.85); 
+            box-shadow: 0 15px 50px -10px rgba(0,0,0,0.15); width: 98%; 
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem 0.75rem 1.5rem; }
+        
+        .logo { display: flex; align-items: center; gap: 14px; }
+        .logo-img { width: 44px; height: 44px; border-radius: 50%; border: none; box-shadow: var(--elevation-1); object-fit: cover; }
+        .logo-text { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 900; color: var(--md-sys-color-primary); display: flex; flex-direction: column; line-height: 1; letter-spacing: -0.02em; }
+        .logo-text span { font-size: 0.7rem; color: var(--md-sys-color-secondary); font-weight: 700; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.1em; }
+        
+        .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+        .nav-links a.nav-link { font-weight: 700; color: var(--md-sys-color-on-surface-variant); font-size: 0.95rem; }
+        .nav-links a.nav-link:hover { color: var(--md-sys-color-secondary); transform: translateY(-2px); }
+        .nav-links .btn { padding: 0.8rem 1.8rem; font-size: 0.8rem; }
+        .hamburger { display: none; background: none; border: none; cursor: pointer; color: var(--md-sys-color-primary); padding-right: 1rem; }
+
+        /* Cinematic Hero Section */
+        .hero { padding: 10rem 1rem 4rem; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .hero-inner {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat;
+            border-radius: var(--border-radius-lg); width: 100%; max-width: 1400px; min-height: 80vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 4rem 2rem; position: relative;
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2); overflow: hidden;
+        }
+        .hero h1 { color: #ffffff; max-width: 1000px; margin: 0 auto 1.5rem; }
+        .hero p { color: rgba(255,255,255,0.8); max-width: 800px; margin: 0 auto 3.5rem; font-size: 1.35rem; font-weight: 300; }
+        .hero-actions { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+
+        /* Glass Bento Box Shared Styles */
+        .bento-card {
+            background: var(--md-sys-color-surface);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--md-sys-color-outline);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--elevation-1);
+            transition: all var(--transition-standard);
+        }
+        .bento-card:hover { transform: translateY(-10px); box-shadow: var(--elevation-hover); border-color: white; }
+
+        /* About Section */
+        .about-section { padding: var(--section-padding); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+        .about-image-wrapper { position: relative; overflow: hidden; border-radius: var(--border-radius-lg); box-shadow: 0 30px 60px rgba(0,0,0,0.2); border: 8px solid white; }
+        .about-image-wrapper img { width: 100%; height: auto; max-height: 800px; object-fit: cover; }
+        
+        .highlight-area {
+            display: flex; flex-direction: column; gap: 1.5rem; margin-top: 3rem;
+            background: rgba(255,255,255,0.6); border-radius: var(--border-radius-md);
+            padding: 2.5rem; box-shadow: var(--elevation-1); border: 1px solid white;
+        }
+        .highlight-item { display: flex; align-items: center; gap: 1rem; }
+        .highlight-icon {
+            width: 48px; height: 48px; background: var(--md-sys-color-primary); color: white;
+            display: flex; align-items: center; justify-content: center; border-radius: 14px;
+        }
+        .highlight-text { font-weight: 600; font-size: 1.1rem; }
+
+        /* Focus Areas (Bento Grid) */
+        .focus-section { padding: var(--section-padding); }
+        .focus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 4rem; }
+        .focus-card { padding: 3.5rem 2.5rem; text-align: center; }
+        .focus-card .material-symbols-outlined { 
+            font-size: 3rem; color: var(--md-sys-color-primary); margin-bottom: 2rem; 
+            background: white; padding: 1.5rem; border-radius: 24px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: all var(--transition-standard);
+        }
+        .focus-card:hover .material-symbols-outlined { transform: translateY(-10px) scale(1.1); background: var(--md-sys-color-secondary); color: white; }
+
+        /* Programs Section */
+        .programs-section { padding: var(--section-padding); }
+        .program-card { display: flex; flex-direction: column; height: 100%; overflow: hidden; padding: 1rem; }
+        .program-img-wrap { overflow: hidden; border-radius: 24px; }
+        .program-img { width: 100%; height: 260px; object-fit: cover; transition: transform 0.8s ease; }
+        .program-card:hover .program-img { transform: scale(1.1); }
+        .program-content { padding: 2.5rem 1.5rem 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .program-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; flex-direction: column; gap: 0.5rem; }
+        
+        .program-details-wrapper {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .program-details-wrapper.expanded {
+            grid-template-rows: 1fr;
+        }
+        .program-details-inner {
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .program-details-wrapper.expanded .program-details-inner {
+            opacity: 1;
+            padding-top: 1.5rem;
+            padding-bottom: 1rem;
+        }
+        .program-initiatives { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.8rem; }
+        .program-initiative-item {
+            background: rgba(255,255,255,0.7); padding: 1rem; border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.9);
+        }
+        .program-initiative-item strong { display: block; color: var(--md-sys-color-primary); font-size: 1.05rem; }
+        .program-initiative-item span { font-size: 0.95rem; color: var(--md-sys-color-on-surface-variant); }
+
+        /* Vision Section */
+        .vision-section { padding: var(--section-padding); text-align: center; }
+        .vision-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 5rem; }
+        .vision-pillar { padding: 4rem 2rem; }
+        .vision-pillar .material-symbols-outlined { font-size: 4rem; color: var(--md-sys-color-secondary); margin-bottom: 2rem; }
+
+        /* Gallery */
+        .gallery-section { padding: var(--section-padding); }
+        .gallery-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            grid-auto-rows: 300px;
+            grid-auto-flow: dense; /* FIX: Added dense packing to eliminate gaps */
+            gap: 1.5rem; 
+            margin-top: 4rem; 
+        }
+        .gallery-item { position: relative; border-radius: var(--border-radius-md); overflow: hidden; box-shadow: var(--elevation-1); cursor: pointer; border: 4px solid white; }
+        .gallery-item::before {
+            content: 'View Image'; position: absolute; inset: 0; background: rgba(0,0,0, 0.6);
+            color: white; display: flex; align-items: center; justify-content: center; text-transform: uppercase; letter-spacing: 0.1em;
+            font-weight: 800; font-size: 1.2rem; opacity: 0; transition: all 0.5s ease; z-index: 2;
+        }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; z-index: 1; }
+        .gallery-item:hover::before { opacity: 1; }
+        .gallery-item:hover img { transform: scale(1.15); }
+        
+        /* Grid span variations for masonry look */
+        @media (min-width: 768px) {
+            .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+            .gallery-item:nth-child(5) { grid-column: span 2; }
+            .gallery-item:nth-child(6) { grid-row: span 2; }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.92); z-index: 2000;
+            display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none;
+            transition: opacity 0.4s ease; padding: 2rem;
+        }
+        .lightbox.active { opacity: 1; pointer-events: all; }
+        .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .lightbox-close, .lightbox-prev, .lightbox-next {
+            position: absolute; color: white; cursor: pointer; font-size: 40px; 
+            background: rgba(255,255,255,0.1); border-radius: 50%; padding: 8px;
+            transition: all 0.3s ease;
+        }
+        .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.3); transform: scale(1.1); }
+        .lightbox-close { top: 30px; right: 30px; }
+        .lightbox-prev { left: 30px; top: 50%; transform: translateY(-50%); }
+        .lightbox-next { right: 30px; top: 50%; transform: translateY(-50%); }
+
+        /* Get Involved - Stark Contrast Section */
+        .involved-section { 
+            padding: 8rem 2rem; background: var(--md-sys-color-primary); color: white; text-align: center; 
+            border-radius: var(--border-radius-lg); margin: 0 2rem; position: relative; overflow: hidden; 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3); 
+        }
+        .involved-section h2, .involved-section p { color: white; }
+        .involved-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 5rem; }
+        .involved-card { 
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: var(--border-radius-md); padding: 4rem 2rem; backdrop-filter: blur(12px); 
+            transition: all var(--transition-standard); display: flex; flex-direction: column; align-items: center; 
+            cursor: pointer; text-decoration: none; color: white;
+        }
+        /* FIX: Ensure the h3 inside the card ignores the global black text color and becomes glassy white */
+        .involved-card h3 { color: rgba(255, 255, 255, 0.95); }
+        .involved-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-15px); border-color: var(--md-sys-color-secondary); color: white; }
+        .involved-card .material-symbols-outlined { font-size: 48px; margin-bottom: 2rem; color: var(--md-sys-color-secondary); }
+        
+        /* Contact Section */
+        .contact-section { padding: var(--section-padding); }
+        .contact-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; }
+        .contact-card { padding: 3rem; display: flex; flex-direction: column; gap: 1.5rem; }
+        .contact-info-row { 
+            display: flex; gap: 1.5rem; align-items: center; background: rgba(255,255,255,0.5); 
+            padding: 1.2rem; border-radius: 20px; border: 1px solid white;
+            transition: all var(--transition-standard);
+        }
+        .contact-icon-wrapper {
+            width: 50px; height: 50px; flex-shrink: 0; background: white; color: var(--md-sys-color-primary);
+            border-radius: 16px; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: all var(--transition-standard);
+        }
+        .contact-info-row:hover { background: white; transform: translateY(-5px); box-shadow: var(--elevation-1); }
+        .contact-info-row:hover .contact-icon-wrapper { background: var(--md-sys-color-primary); color: white; }
+        .contact-text-wrap strong { font-size: 1.1rem; display: block; margin-bottom: 2px; }
+        .contact-text-wrap span, .contact-text-wrap a { color: var(--md-sys-color-on-surface-variant); font-size: 0.95rem; text-decoration: none; }
+        .contact-text-wrap a:hover { color: var(--md-sys-color-secondary); }
+        
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.75rem; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; }
+        .form-control { 
+            width: 100%; padding: 1.25rem; border: none; border-radius: 20px; 
+            background: rgba(255,255,255,0.8); box-shadow: inset 0 2px 4px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.1);
+            font-family: inherit; font-size: 1.1rem; transition: all 0.3s ease; 
+        }
+        .form-control:focus { outline: none; background: white; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02), 0 0 0 2px var(--md-sys-color-secondary); }
+        textarea.form-control { min-height: 200px; resize: vertical; }
+        
+        .location-block { 
+            background: rgba(255,255,255,0.8); border: 1px solid white;
+            border-radius: var(--border-radius-md); padding: 3rem 2rem; text-align: center;
+            box-shadow: var(--elevation-1); margin-top: 1rem;
+        }
+
+        /* Footer */
+        .footer { background: var(--md-sys-color-primary); color: white; padding: 6rem 2rem 2rem; margin-top: 4rem; border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0; }
+        .footer-content { max-width: 1300px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 3rem; }
+        .footer .logo-text { color: white; }
+        .footer-links { display: flex; gap: 3rem; flex-wrap: wrap; justify-content: center; }
+        .footer-links a { font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+        .footer-links a:hover { color: var(--md-sys-color-secondary); }
+
+        .footer-bottom { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); width: 100%; font-size: 0.9rem; color: rgba(255,255,255,0.5); display: flex; justify-content: center; flex-wrap: wrap; max-width: 1300px; }
+
+        /* Staggered Animations */
+        .fade-up { opacity: 0; transform: translateY(60px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .stagger-1 { transition-delay: 100ms; } .stagger-2 { transition-delay: 200ms; } .stagger-3 { transition-delay: 300ms; } .stagger-4 { transition-delay: 400ms; } .stagger-5 { transition-delay: 500ms; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fade-up, .hero-actions, .chip-location { opacity: 1; transform: none; transition: none; animation: none; }
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
+            .vision-grid { grid-template-columns: 1fr; }
+            :root { --section-padding: 6rem 1.5rem; }
+            .nav-links { gap: 1rem; }
+        }
+        @media (max-width: 768px) {
+            .header { top: 10px; width: 95%; border-radius: 24px; }
+            .nav-links {
+                position: fixed; top: 80px; left: -100%; width: 95%; height: auto; padding: 2rem;
+                background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); flex-direction: column;
+                border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); border: 1px solid white;
+                transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); margin-left: 2.5%;
+            }
+            .nav-links.active { left: 0; }
+            .hamburger { display: block; padding: 10px; }
+            .nav-links .btn { width: 100%; margin-top: 1rem; }
+            .hero-inner { min-height: 70vh; padding: 3rem 1.5rem; border-radius: 32px; }
+            .involved-section { margin: 0 1rem; border-radius: 32px; padding: 5rem 1.5rem; }
+            .contact-card { padding: 1.5rem; }
+            .contact-info-row { flex-direction: column; text-align: center; gap: 1rem; }
+            .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: minmax(250px, auto); }
+            .gallery-item:nth-child(n) { grid-column: span 1 !important; grid-row: span 1 !important; }
+            .lightbox-prev, .lightbox-next { top: auto; bottom: 30px; transform: none; }
+            .lightbox-prev { left: 30px; } .lightbox-next { right: 30px; }
+        }
+    </style>
 </head>
 <body>
-  <main class="page">
-    <img class="poster" src="poster.jpg" alt="Poster">
-    <div class="overlay"></div>
 
-    <section class="content">
-      <div class="badge">Coming Soon</div>
-      <h1>STAY TUNED</h1>
-      <p>Website is under development</p>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="xyz1.jpg" alt="RD Shikshan Evam Samaj Kalyan Samiti Logo" class="logo-img" onerror="this.src='https://ui-avatars.com/api/?name=RD&background=000&color=fff&rounded=true&size=128'">
+                <div class="logo-text">
+                    RD Shikshan Evam Samaj Kalyan Samiti
+                    <span>Non-Profit Organization</span>
+                </div>
+            </a>
+            
+            <nav class="nav-links" id="navLinks">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#focus" class="nav-link">Focus Areas</a>
+                <a href="#programs" class="nav-link">Programs</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#involved" class="btn btn-primary">Get Involved</a>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span class="material-symbols-outlined" style="font-size: 32px;">menu</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-inner fade-up">
+            <div class="chip-location">
+                <span class="material-symbols-outlined" style="font-size: 20px;">location_on</span>
+                Bhopal, Madhya Pradesh
+            </div>
+            <h1 class="display-large">Empowering People. Strengthening Communities.</h1>
+            <p>RD Shikshan Evam Samaj Kalyan Samiti works in education, skill development, women empowerment, youth development and community welfare.</p>
+            <div class="hero-actions">
+                <a href="#about" class="btn btn-primary">Explore Our Vision</a>
+                <a href="#programs" class="btn btn-secondary">
+                    Explore Our Programs <span class="material-symbols-outlined" style="font-size: 22px;">arrow_forward</span>
+                </a>
+            </div>
+        </div>
     </section>
-  </main>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container about-grid">
+            <div class="fade-up">
+                <span class="label-small" style="color: var(--md-sys-color-secondary);">About Us</span>
+                <h2 class="headline-medium mt-2">Empowering Communities, Shaping Futures</h2>
+                <p class="body-large">RD Shikshan Evam Samaj Kalyan Samiti, established in 2012 by Shri Manoj Bhavsar in Bhopal, is a non-profit organization committed to education, skill development, women empowerment, and community welfare. We work to create opportunities, build confidence, and empower individuals—especially women and youth—to become self-reliant and active contributors to society.</p>
+                <p class="body-large mt-2">Through our grassroots initiatives, we strive to reach underserved communities and create sustainable, long-term impact. We believe that education and empowerment are the foundation of a stronger and more inclusive society.</p>
+                <p class="body-large mt-2" style="font-weight: 700; color: var(--md-sys-color-primary);">Our mission is simple: Empower people, strengthen communities, and create a better future for all.</p>
+                
+                <div class="highlight-area fade-up stagger-1">
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><span class="material-symbols-outlined">event</span></div>
+                        <div class="highlight-text">Established: 2012</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><span class="material-symbols-outlined">person</span></div>
+                        <div class="highlight-text">Founder: Shri Manoj Bhavsar</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><span class="material-symbols-outlined">location_on</span></div>
+                        <div class="highlight-text">Location: Bhopal, Madhya Pradesh</div>
+                    </div>
+                </div>
+            </div>
+            <div class="fade-up about-image-wrapper">
+                <img src="8.jpg" alt="About RD Shikshan Evam Samaj Kalyan Samiti" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Focus Areas -->
+    <section class="focus-section container" id="focus">
+        <div class="text-center fade-up">
+            <span class="label-small" style="color: var(--md-sys-color-secondary);">Core Pillars</span>
+            <h2 class="headline-medium mt-2">Our Focus Areas</h2>
+            <p class="body-large">The key areas driving our organizational impact.</p>
+        </div>
+        <div class="focus-grid">
+            <div class="focus-card bento-card fade-up stagger-1">
+                <span class="material-symbols-outlined">menu_book</span>
+                <h3 class="title-medium mb-2">Education</h3>
+                <p style="color: var(--md-sys-color-on-surface-variant);">Ensuring every child gets the opportunity to learn, grow, and access quality education.</p>
+            </div>
+            <div class="focus-card bento-card fade-up stagger-2">
+                <span class="material-symbols-outlined">women</span>
+                <h3 class="title-medium mb-2">Women Empowerment</h3>
+                <p style="color: var(--md-sys-color-on-surface-variant);">Building confidence, promoting financial independence, and fostering leadership skills.</p>
+            </div>
+            <div class="focus-card bento-card fade-up stagger-3">
+                <span class="material-symbols-outlined">emoji_people</span>
+                <h3 class="title-medium mb-2">Youth Development</h3>
+                <p style="color: var(--md-sys-color-on-surface-variant);">Guiding young minds through career awareness, leadership, and personal development.</p>
+            </div>
+            <div class="focus-card bento-card fade-up stagger-4">
+                <span class="material-symbols-outlined">build</span>
+                <h3 class="title-medium mb-2">Skill Development</h3>
+                <p style="color: var(--md-sys-color-on-surface-variant);">Providing practical training and vocational skills to improve employability and self-reliance.</p>
+            </div>
+            <div class="focus-card bento-card fade-up stagger-5">
+                <span class="material-symbols-outlined">volunteer_activism</span>
+                <h3 class="title-medium mb-2">Community Welfare</h3>
+                <p style="color: var(--md-sys-color-on-surface-variant);">Supporting grassroots initiatives focused on sustainable, long-term community well-being.</p>
+            </div>
+            <div class="focus-card bento-card fade-up stagger-5">
+                <span class="material-symbols-outlined">campaign</span>
+                <h3 class="title-medium mb-2">Awareness & Social Development</h3>
+                <p style="color: var(--md-sys-color-on-surface-variant);">Promoting active citizenship, social equality, responsible behavior, and awareness of rights.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs -->
+    <section class="programs-section" id="programs">
+        <div class="container">
+            <div class="text-center fade-up mb-4">
+                <span class="label-small" style="color: var(--md-sys-color-secondary);">Initiatives</span>
+                <h2 class="headline-medium mt-2">Our Programs</h2>
+                <p class="body-large">Structured activities designed to create meaningful opportunities.</p>
+            </div>
+            <div class="focus-grid">
+                <!-- Program 1 -->
+                <div class="program-card bento-card fade-up stagger-1">
+                    <div class="program-img-wrap">
+                        <img src="1.jpg" alt="Educational Support" class="program-img" loading="lazy">
+                    </div>
+                    <div class="program-content">
+                        <div class="program-header">
+                            <h3 class="title-medium">Educational Support</h3>
+                            <span style="color: var(--md-sys-color-secondary); font-weight: 600; font-size: 0.9rem;">Empowering Children Through Quality Education</span>
+                        </div>
+                        <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant);">Millions of children lack access to basic education due to financial hardship and systemic barriers. Our Child Education initiative works directly in underserved communities to ensure every child gets the opportunity to learn, grow, and thrive in a safe environment.</p>
+                        
+                        <div class="program-details-wrapper">
+                            <div class="program-details-inner">
+                                <h4 class="title-medium mb-2" style="font-size: 1.1rem;">Key Initiatives:</h4>
+                                <div class="program-initiatives">
+                                    <div class="program-initiative-item">
+                                        <strong>After-School Learning Centers</strong>
+                                        <span>Providing remedial coaching, homework help, and foundational literacy/numeracy for first-generation learners.</span>
+                                    </div>
+                                    <div class="program-initiative-item">
+                                        <strong>School Supplies & Scholarships</strong>
+                                        <span>Distributing free books, uniforms, stationery, and financial assistance to prevent school dropouts.</span>
+                                    </div>
+                                    <div class="program-initiative-item">
+                                        <strong>Digital Literacy</strong>
+                                        <span>Equipping classrooms with basic computers and interactive learning tools to bridge the digital divide.</span>
+                                    </div>
+                                    <div class="program-initiative-item">
+                                        <strong>Holistic Development</strong>
+                                        <span>Conducting extracurricular workshops, sports activities, and life-skills training.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary toggle-details-btn" style="width: 100%; margin-top: auto;">View Details</button>
+                    </div>
+                </div>
+
+                <!-- Program 2 -->
+                <div class="program-card bento-card fade-up stagger-2">
+                    <div class="program-img-wrap">
+                        <img src="2.jpg" alt="Women Empowerment" class="program-img" loading="lazy">
+                    </div>
+                    <div class="program-content">
+                        <div class="program-header">
+                            <h3 class="title-medium">Women Empowerment</h3>
+                            <span style="color: var(--md-sys-color-secondary); font-weight: 600; font-size: 0.9rem;">Fostering Independence and Leadership</span>
+                        </div>
+                        <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant);">We actively support the journey of women towards self-reliance, providing essential tools and creating environments where they can build confidence, grow economically, and lead their communities.</p>
+                        
+                        <div class="program-details-wrapper">
+                            <div class="program-details-inner">
+                                <h4 class="title-medium mb-2" style="font-size: 1.1rem;">Key Initiatives:</h4>
+                                <div class="program-initiatives">
+                                    <div class="program-initiative-item"><strong>Skill Development & Vocational Training</strong><span>Providing women with practical skills to improve employment and income opportunities.</span></div>
+                                    <div class="program-initiative-item"><strong>Entrepreneurship Support</strong><span>Encouraging women to start and grow small businesses and self-employment ventures.</span></div>
+                                    <div class="program-initiative-item"><strong>Financial Independence</strong><span>Promoting financial literacy, savings, and sustainable income generation.</span></div>
+                                    <div class="program-initiative-item"><strong>Digital Literacy</strong><span>Helping women develop essential digital and technology skills.</span></div>
+                                    <div class="program-initiative-item"><strong>Education & Awareness</strong><span>Supporting girls and women through education, awareness programs, and career guidance.</span></div>
+                                    <div class="program-initiative-item"><strong>Self-Help Groups (SHGs)</strong><span>Promoting collective action, savings, and income-generating activities.</span></div>
+                                    <div class="program-initiative-item"><strong>Leadership Development</strong><span>Building confidence and encouraging women to participate in community decision-making.</span></div>
+                                    <div class="program-initiative-item"><strong>Legal & Social Awareness</strong><span>Creating awareness about women’s rights, safety, equality, and available support systems.</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary toggle-details-btn" style="width: 100%; margin-top: auto;">View Details</button>
+                    </div>
+                </div>
+
+                <!-- Program 3 -->
+                <div class="program-card bento-card fade-up stagger-3">
+                    <div class="program-img-wrap">
+                        <img src="3.jpg" alt="Youth Development" class="program-img" loading="lazy">
+                    </div>
+                    <div class="program-content">
+                        <div class="program-header">
+                            <h3 class="title-medium">Youth Development</h3>
+                            <span style="color: var(--md-sys-color-secondary); font-weight: 600; font-size: 0.9rem;">Guiding the Next Generation of Leaders</span>
+                        </div>
+                        <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant);">Empowering young individuals by providing the guidance, skills, and confidence they need to transition successfully into adulthood, find meaningful careers, and become responsible citizens.</p>
+                        
+                        <div class="program-details-wrapper">
+                            <div class="program-details-inner">
+                                <h4 class="title-medium mb-2" style="font-size: 1.1rem;">Key Focus Areas:</h4>
+                                <div class="program-initiatives">
+                                    <div class="program-initiative-item"><strong>Skill Development & Employability</strong><span>Offering practical training programs to prepare youth for the modern workforce and self-reliance.</span></div>
+                                    <div class="program-initiative-item"><strong>Career Awareness</strong><span>Providing counseling and guidance to help youth navigate educational pathways and career options.</span></div>
+                                    <div class="program-initiative-item"><strong>Digital & Communication Skills</strong><span>Ensuring young people are fluent in essential digital tools and effective communication techniques.</span></div>
+                                    <div class="program-initiative-item"><strong>Leadership & Confidence Building</strong><span>Cultivating self-assurance and leadership capabilities to help youth overcome challenges.</span></div>
+                                    <div class="program-initiative-item"><strong>Education Support</strong><span>Assisting with continued education and mitigating barriers to learning.</span></div>
+                                    <div class="program-initiative-item"><strong>Constructive Community Participation</strong><span>Encouraging active, positive engagement in local civic initiatives and social development.</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary toggle-details-btn" style="width: 100%; margin-top: auto;">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="vision-section container fade-up">
+        <h2 class="headline-medium">A Vision for Meaningful Social Change</h2>
+        <p class="body-large" style="max-width: 750px; margin: 0 auto;">Our organizational roadmap is built on three conceptual pillars designed to create lasting, positive impact.</p>
+        
+        <div class="vision-grid">
+            <div class="vision-pillar bento-card fade-up stagger-1">
+                <span class="material-symbols-outlined">lightbulb</span>
+                <h3 class="title-medium mb-2">Learn</h3>
+                <p style="color: var(--md-sys-color-on-surface-variant);">Creating environments and opportunities for accessible education, skills transfer, and knowledge sharing.</p>
+            </div>
+            <div class="vision-pillar bento-card fade-up stagger-2">
+                <span class="material-symbols-outlined">handshake</span>
+                <h3 class="title-medium mb-2">Participate</h3>
+                <p style="color: var(--md-sys-color-on-surface-variant);">Encouraging people from all walks of life to actively contribute to the betterment of their communities.</p>
+            </div>
+            <div class="vision-pillar bento-card fade-up stagger-3">
+                <span class="material-symbols-outlined">eco</span>
+                <h3 class="title-medium mb-2">Grow</h3>
+                <p style="color: var(--md-sys-color-on-surface-variant);">Supporting long-term personal, professional, and social development to build resilient societies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery-section container" id="gallery">
+        <div class="text-center fade-up">
+            <span class="label-small" style="color: var(--md-sys-color-secondary);">Glimpses</span>
+            <h2 class="headline-medium mt-2">Visualizing Our Mission</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item fade-up stagger-1" onclick="openLightbox('1.jpg')"><img src="1.jpg" alt="Gallery Image 1" loading="lazy"></div>
+            <div class="gallery-item fade-up stagger-2" onclick="openLightbox('2.jpg')"><img src="2.jpg" alt="Gallery Image 2" loading="lazy"></div>
+            <div class="gallery-item fade-up stagger-3" onclick="openLightbox('3.jpg')"><img src="3.jpg" alt="Gallery Image 3" loading="lazy"></div>
+            <div class="gallery-item fade-up stagger-4" onclick="openLightbox('4.jpg')"><img src="4.jpg" alt="Gallery Image 4" loading="lazy"></div>
+            <div class="gallery-item fade-up stagger-5" onclick="openLightbox('5.jpg')"><img src="5.jpg" alt="Gallery Image 5" loading="lazy"></div>
+            <div class="gallery-item fade-up stagger-1" onclick="openLightbox('6.jpg')"><img src="6.jpg" alt="Gallery Image 6" loading="lazy"></div>
+            <div class="gallery-item fade-up stagger-2" onclick="openLightbox('7.jpg')"><img src="7.jpg" alt="Gallery Image 7" loading="lazy"></div>
+        </div>
+    </section>
+    
+    <!-- Lightbox Element -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close material-symbols-outlined" id="lightboxClose">close</span>
+        <span class="lightbox-prev material-symbols-outlined" id="lightboxPrev">chevron_left</span>
+        <img id="lightboxImg" src="" alt="Enlarged view">
+        <span class="lightbox-next material-symbols-outlined" id="lightboxNext">chevron_right</span>
+    </div>
+
+    <!-- Get Involved -->
+    <section class="involved-section" id="involved">
+        <div class="container fade-up">
+            <h2 class="headline-medium">Be Part of the Journey</h2>
+            <p class="body-large" style="max-width: 800px; margin: 0 auto; color: rgba(255,255,255,0.8);">Meaningful change begins with people who care. Join us in supporting education, empowering women, developing youth, and strengthening communities.</p>
+            
+            <div class="involved-grid">
+                <a href="#contact" class="involved-card fade-up stagger-1">
+                    <span class="material-symbols-outlined">volunteer_activism</span>
+                    <h3 class="title-medium">Volunteer</h3>
+                </a>
+                <a href="#contact" class="involved-card fade-up stagger-2">
+                    <span class="material-symbols-outlined">group_add</span>
+                    <h3 class="title-medium">Partner With Us</h3>
+                </a>
+                <a href="#contact" class="involved-card fade-up stagger-3">
+                    <span class="material-symbols-outlined">diversity_1</span>
+                    <h3 class="title-medium">Support Our Mission</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section container" id="contact">
+        <div class="contact-grid">
+            <div class="fade-up">
+                <span class="label-small" style="color: var(--md-sys-color-secondary);">Get in touch</span>
+                <h2 class="headline-medium mt-2">Connect With Us</h2>
+                <p class="body-large mb-4">Have questions about our initiatives or want to get involved? Send us a message.</p>
+                
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Jane Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="jane@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.5rem;">
+                        Send Message <span class="material-symbols-outlined">send</span>
+                    </button>
+                    <div id="formMessage" style="display: none; margin-top: 2rem; padding: 1.5rem; background: white; color: var(--md-sys-color-primary); border-radius: var(--border-radius-sm); text-align: center; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; box-shadow: var(--elevation-1);">
+                        <span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">mail</span>
+                        Opening your email application...
+                    </div>
+                </form>
+            </div>
+            
+            <div class="contact-card bento-card fade-up stagger-2">
+                <h3 class="headline-medium mb-4" style="font-size: 2rem;">Official Info</h3>
+                
+                <div class="contact-info-row">
+                    <div class="contact-icon-wrapper"><span class="material-symbols-outlined">badge</span></div>
+                    <div class="contact-text-wrap">
+                        <strong>Organization Name</strong>
+                        <span>RD SHIKSHAN EVAM SAMAJ KALYAN SAMITI BHOPAL</span>
+                    </div>
+                </div>
+                <div class="contact-info-row">
+                    <div class="contact-icon-wrapper"><span class="material-symbols-outlined">event</span></div>
+                    <div class="contact-text-wrap">
+                        <strong>Established</strong>
+                        <span>2012</span>
+                    </div>
+                </div>
+                <div class="contact-info-row">
+                    <div class="contact-icon-wrapper"><span class="material-symbols-outlined">mail</span></div>
+                    <div class="contact-text-wrap">
+                        <strong>Email</strong>
+                        <a href="mailto:rdshikshanevamsamajkalyansamit@gmail.com">rdshikshanevamsamajkalyansamit@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-info-row">
+                    <div class="contact-icon-wrapper"><span class="material-symbols-outlined">call</span></div>
+                    <div class="contact-text-wrap">
+                        <strong>Phone</strong>
+                        <a href="tel:7999120588">7999120588</a>
+                    </div>
+                </div>
+                <div class="contact-info-row">
+                    <div class="contact-icon-wrapper"><span class="material-symbols-outlined">verified</span></div>
+                    <div class="contact-text-wrap">
+                        <strong>Registration Status</strong>
+                        <span>Govt registered NGO</span>
+                    </div>
+                </div>
+                <div class="contact-info-row">
+                    <div class="contact-icon-wrapper"><span class="material-symbols-outlined">assignment</span></div>
+                    <div class="contact-text-wrap">
+                        <strong>CSR-1 Registration No</strong>
+                        <span>CSR00070102</span>
+                    </div>
+                </div>
+                <div class="contact-info-row">
+                    <div class="contact-icon-wrapper"><span class="material-symbols-outlined">fingerprint</span></div>
+                    <div class="contact-text-wrap">
+                        <strong>Darpan ID</strong>
+                        <span>MP/2021/0273452</span>
+                    </div>
+                </div>
+
+                <div class="location-block">
+                    <span class="material-symbols-outlined" style="font-size: 48px; color: var(--md-sys-color-secondary); margin-bottom: 1rem;">location_on</span>
+                    <h4 class="title-medium">Bhopal, Madhya Pradesh, India</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="#" class="logo" style="justify-content: center;">
+                <img src="xyz1.jpg" alt="RD Samiti Logo" class="logo-img" onerror="this.src='https://ui-avatars.com/api/?name=RD&background=fff&color=000&rounded=true&size=128'">
+                <div class="logo-text" style="text-align: left;">
+                    RD Samiti
+                    <span style="color: rgba(255,255,255,0.7);">Shikshan Evam Samaj Kalyan</span>
+                </div>
+            </a>
+            
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#focus">Focus Areas</a>
+                <a href="#programs">Programs</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+                <a href="#involved">Get Involved</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>&copy; 2026 RD Shikshan Evam Samaj Kalyan Samiti Bhopal. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Sticky Header & Active States
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        const navItems = document.querySelectorAll('.nav-link');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = hamburger.querySelector('span');
+            icon.textContent = navLinks.classList.contains('active') ? 'close' : 'menu';
+            icon.style.transform = navLinks.classList.contains('active') ? 'rotate(90deg)' : 'rotate(0deg)';
+            icon.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+        });
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.querySelector('span').textContent = 'menu';
+                hamburger.querySelector('span').style.transform = 'rotate(0deg)';
+            });
+        });
+        
+        // Close menu when clicking 'Get Involved' mobile button
+        const getInvolvedBtn = document.querySelector('#navLinks .btn');
+        if (getInvolvedBtn) {
+            getInvolvedBtn.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.querySelector('span').textContent = 'menu';
+                hamburger.querySelector('span').style.transform = 'rotate(0deg)';
+            });
+        }
+
+        // Advanced Fade-Up Animation Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -50px 0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Program Details Expansion Toggle
+        document.querySelectorAll('.toggle-details-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const wrapper = this.parentElement.querySelector('.program-details-wrapper');
+                const isExpanded = wrapper.classList.contains('expanded');
+                
+                if(isExpanded) {
+                    wrapper.classList.remove('expanded');
+                    this.textContent = 'View Details';
+                } else {
+                    wrapper.classList.add('expanded');
+                    this.textContent = 'Close Details';
+                }
+            });
+        });
+
+        // Gallery Lightbox Logic
+        const galleryImages = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg'];
+        let currentImageIndex = 0;
+        
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const btnClose = document.getElementById('lightboxClose');
+        const btnPrev = document.getElementById('lightboxPrev');
+        const btnNext = document.getElementById('lightboxNext');
+
+        function openLightbox(imgSrc) {
+            currentImageIndex = galleryImages.indexOf(imgSrc);
+            if(currentImageIndex === -1) currentImageIndex = 0; // fallback
+            updateLightboxImage();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateLightboxImage() {
+            lightboxImg.src = galleryImages[currentImageIndex];
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            updateLightboxImage();
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateLightboxImage();
+        }
+
+        btnClose.addEventListener('click', closeLightbox);
+        btnNext.addEventListener('click', nextImage);
+        btnPrev.addEventListener('click', prevImage);
+        lightbox.addEventListener('click', (e) => {
+            if(e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard support for Lightbox
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+
+        // Contact Form Mailto Generation
+        const form = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+        const submitBtn = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); 
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const msg = document.getElementById('message').value;
+            
+            // Generate random 7-digit ID
+            const randomId = Math.floor(1000000 + Math.random() * 9000000);
+            const enquiryId = `Enquiry-${randomId}`;
+            
+            const subjectText = enquiryId;
+            const bodyText = `Hello RD Shikshan Evam Samaj Kalyan Samiti,\n\nI would like to make an enquiry.\n\nName: ${name}\nEmail: ${email}\nMessage:\n${msg}\n\nEnquiry ID: ${enquiryId}\n\nRegards,\n${name}`;
+            
+            const subjectParam = encodeURIComponent(subjectText);
+            const bodyParam = encodeURIComponent(bodyText);
+            
+            const mailtoUrl = `mailto:rdshikshanevamsamajkalyansamit@gmail.com?subject=${subjectParam}&body=${bodyParam}`;
+            
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="material-symbols-outlined" style="animation: pulseGlow 1s infinite;">sync</span> Preparing Email...';
+            
+            setTimeout(() => {
+                formMessage.style.display = 'block';
+                window.location.href = mailtoUrl;
+                submitBtn.innerHTML = originalText;
+                
+                setTimeout(() => {
+                    formMessage.style.display = 'none';
+                    form.reset();
+                }, 4000);
+            }, 800);
+        });
+    </script>
 </body>
 </html>
