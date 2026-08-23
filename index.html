@@ -70,8 +70,7 @@
         a { text-decoration: none; color: inherit; transition: all var(--transition-standard); }
         img { max-width: 100%; height: auto; display: block; border-radius: var(--border-radius-md); }
         
-        /* High-Fashion Typography */
-        /* Adjusted clamp values to ensure text fits on narrower screens */
+        /* High-Fashion Typography with word-wrap to prevent overflow */
         .display-large { font-size: clamp(2.2rem, 8vw, 5.5rem); font-weight: 900; letter-spacing: -0.05em; line-height: 1; word-wrap: break-word; }
         .headline-medium { font-size: clamp(1.8rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.04em; word-wrap: break-word; }
         .title-medium { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
@@ -179,10 +178,9 @@
         }
         .highlight-text { font-weight: 600; font-size: 1.1rem; }
 
-        /* Focus Areas (Bento Grid) */
+        /* Focus Areas (Bento Grid) - Kept original 320px for perfect Desktop 3-column */
         .focus-section { padding: var(--section-padding); }
-        /* Reduced min width for cards to fit mobile screens perfectly */
-        .focus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 4rem; }
+        .focus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 4rem; }
         .focus-card { padding: 3.5rem 2.5rem; text-align: center; }
         .focus-card .material-symbols-outlined { 
             font-size: 3rem; color: var(--md-sys-color-primary); margin-bottom: 2rem; 
@@ -350,7 +348,7 @@
             .fade-up, .hero-actions, .chip-location { opacity: 1; transform: none; transition: none; animation: none; }
         }
 
-        /* Responsive Breakpoints */
+        /* Responsive Breakpoints - Mobile Layout Rules ONLY */
         @media (max-width: 1024px) {
             .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
             .vision-grid { grid-template-columns: 1fr; }
@@ -358,7 +356,6 @@
             .nav-links { gap: 1rem; }
         }
         @media (max-width: 768px) {
-            /* Force exact scaling rules for mobile constraints */
             .logo-text { font-size: 1.05rem; }
             .logo-text span { font-size: 0.65rem; }
             
@@ -374,9 +371,9 @@
             .nav-links .btn { width: 100%; margin-top: 1rem; }
             .hero-inner { min-height: 70vh; padding: 3rem 1.5rem; border-radius: 32px; }
             
-            /* Ensures Grids convert smoothly without horizontal overflow */
+            /* Forces 1 column specifically on mobile devices so cards don't squeeze */
             .focus-grid, .vision-grid { grid-template-columns: 1fr; }
-            .focus-card { padding: 2rem 1.5rem; } /* Fixed overwhelming padding */
+            .focus-card { padding: 2rem 1.5rem; }
             
             .involved-section { margin: 0 1rem; border-radius: 32px; padding: 5rem 1.5rem; }
             .contact-card { padding: 1.5rem; }
@@ -478,8 +475,9 @@
                 <h3 class="title-medium mb-2">Education</h3>
                 <p style="color: var(--md-sys-color-on-surface-variant);">Ensuring every child gets the opportunity to learn, grow, and access quality education.</p>
             </div>
+            <!-- FIXED THE ICON HERE. Changed "women" to "woman" -->
             <div class="focus-card bento-card fade-up stagger-2">
-                <span class="material-symbols-outlined">women</span>
+                <span class="material-symbols-outlined">woman</span>
                 <h3 class="title-medium mb-2">Women Empowerment</h3>
                 <p style="color: var(--md-sys-color-on-surface-variant);">Building confidence, promoting financial independence, and fostering leadership skills.</p>
             </div>
@@ -828,13 +826,11 @@
 
         async function initFirebase() {
             try {
-                // Changed from apikey.txt to apikey.json
                 const response = await fetch("apikey.json");
                 if (!response.ok) {
                     throw new Error("Unable to load Firebase API key.");
                 }
                 
-                // Parse the JSON data
                 const configData = await response.json();
                 const apiKey = configData.apiKey;
 
@@ -857,7 +853,6 @@
             }
         }
 
-        // Initialize Firebase on page load
         initFirebase();
 
         form.addEventListener('submit', async (e) => {
@@ -865,22 +860,19 @@
 
             if (!firebaseReady) {
                 formMessage.style.display = 'block';
-                formMessage.style.color = '#dc2626'; // Red error color
+                formMessage.style.color = '#dc2626';
                 formMessage.innerHTML = '<span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">error</span>System is initializing or failed to load. Please try again.';
                 return;
             }
 
-            // Capture field values
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const phone = document.getElementById('phone').value.trim();
             const message = document.getElementById('message').value.trim();
 
-            // Generate Enquiry ID
             const randomId = Math.floor(1000000 + Math.random() * 9000000);
             const enquiryId = `Enquiry-${randomId}`;
 
-            // Loading State
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<span class="material-symbols-outlined" style="animation: pulseGlow 1s infinite;">sync</span> Submitting...';
             submitBtn.disabled = true;
@@ -901,7 +893,6 @@
                     status: "new"
                 });
 
-                // Success Message
                 formMessage.style.display = 'block';
                 formMessage.style.color = 'var(--md-sys-color-secondary)';
                 formMessage.innerHTML = `<span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">check_circle</span>Your message has been submitted successfully.<br><br>Enquiry ID: ${enquiryId}`;
@@ -917,9 +908,8 @@
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
                 
-                // Hide message after 8 seconds
                 setTimeout(() => {
-                    if (formMessage.style.color !== 'rgb(220, 38, 38)') { // Don't hide error messages automatically
+                    if (formMessage.style.color !== 'rgb(220, 38, 38)') {
                         formMessage.style.display = 'none';
                     }
                 }, 8000);
@@ -929,7 +919,6 @@
 
     <!-- JavaScript for Existing Interactivity -->
     <script>
-        // Sticky Header & Active States
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 20) {
@@ -939,7 +928,6 @@
             }
         });
 
-        // Mobile Menu Toggle
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
         const navItems = document.querySelectorAll('.nav-link');
@@ -960,7 +948,6 @@
             });
         });
         
-        // Close menu when clicking 'Get Involved' mobile button
         const getInvolvedBtn = document.querySelector('#navLinks .btn');
         if (getInvolvedBtn) {
             getInvolvedBtn.addEventListener('click', () => {
@@ -970,7 +957,6 @@
             });
         }
 
-        // Advanced Fade-Up Animation Observer
         const observerOptions = {
             root: null,
             rootMargin: '0px 0px -50px 0px',
@@ -990,7 +976,6 @@
             observer.observe(element);
         });
 
-        // Program Details Expansion Toggle
         document.querySelectorAll('.toggle-details-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const wrapper = this.parentElement.querySelector('.program-details-wrapper');
@@ -1006,7 +991,6 @@
             });
         });
 
-        // Gallery Lightbox Logic
         const galleryImages = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg'];
         let currentImageIndex = 0;
         
@@ -1018,7 +1002,7 @@
 
         function openLightbox(imgSrc) {
             currentImageIndex = galleryImages.indexOf(imgSrc);
-            if(currentImageIndex === -1) currentImageIndex = 0; // fallback
+            if(currentImageIndex === -1) currentImageIndex = 0;
             updateLightboxImage();
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1050,7 +1034,6 @@
             if(e.target === lightbox) closeLightbox();
         });
 
-        // Keyboard support for Lightbox
         document.addEventListener('keydown', (e) => {
             if (!lightbox.classList.contains('active')) return;
             if (e.key === 'Escape') closeLightbox();
