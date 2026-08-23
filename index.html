@@ -236,7 +236,7 @@
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             grid-auto-rows: 300px;
-            grid-auto-flow: dense; /* FIX: Added dense packing to eliminate gaps */
+            grid-auto-flow: dense;
             gap: 1.5rem; 
             margin-top: 4rem; 
         }
@@ -289,7 +289,6 @@
             transition: all var(--transition-standard); display: flex; flex-direction: column; align-items: center; 
             cursor: pointer; text-decoration: none; color: white;
         }
-        /* FIX: Ensure the h3 inside the card ignores the global black text color and becomes glassy white */
         .involved-card h3 { color: rgba(255, 255, 255, 0.95); }
         .involved-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-15px); border-color: var(--md-sys-color-secondary); color: white; }
         .involved-card .material-symbols-outlined { font-size: 48px; margin-bottom: 2rem; color: var(--md-sys-color-secondary); }
@@ -697,6 +696,10 @@
                         <input type="email" id="email" class="form-control" placeholder="jane@example.com" required>
                     </div>
                     <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="9876543210" required>
+                    </div>
+                    <div class="form-group">
                         <label for="message">Message</label>
                         <textarea id="message" class="form-control" placeholder="How can we help you?" required></textarea>
                     </div>
@@ -704,8 +707,7 @@
                         Send Message <span class="material-symbols-outlined">send</span>
                     </button>
                     <div id="formMessage" style="display: none; margin-top: 2rem; padding: 1.5rem; background: white; color: var(--md-sys-color-primary); border-radius: var(--border-radius-sm); text-align: center; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; box-shadow: var(--elevation-1);">
-                        <span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">mail</span>
-                        Opening your email application...
+                        <!-- Message populated by JS -->
                     </div>
                 </form>
             </div>
@@ -794,11 +796,124 @@
         </div>
         
         <div class="footer-bottom">
-            <div>&copy; 2026 RD Shikshan Evam Samaj Kalyan Samiti Bhopal. All rights reserved. Created by SDTECHSOLUTIONS(Quera Music)</div>
+            <div>&copy; 2026 RD Shikshan Evam Samaj Kalyan Samiti Bhopal. All rights reserved.</div>
         </div>
     </footer>
 
-    <!-- JavaScript for Interactivity -->
+    <!-- Firebase Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+        import { getDatabase, ref, push, set, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+
+        const form = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+        const submitBtn = form.querySelector('button[type="submit"]');
+
+        let db;
+        let firebaseReady = false;
+
+        async function initFirebase() {
+            try {
+                // Changed from apikey.txt to apikey.json
+                const response = await fetch("apikey.json");
+                if (!response.ok) {
+                    throw new Error("Unable to load Firebase API key.");
+                }
+                
+                // Parse the JSON data
+                const configData = await response.json();
+                const apiKey = configData.apiKey;
+
+                const firebaseConfig = {
+                    apiKey: apiKey,
+                    authDomain: "ngoweb-ab700.firebaseapp.com",
+                    databaseURL: "https://ngoweb-ab700-default-rtdb.asia-southeast1.firebasedatabase.app",
+                    projectId: "ngoweb-ab700",
+                    storageBucket: "ngoweb-ab700.firebasestorage.app",
+                    messagingSenderId: "236050742753",
+                    appId: "1:236050742753:web:1d9ecf17cf6cbaf49266a0",
+                    measurementId: "G-0SLXYKDE54"
+                };
+
+                const app = initializeApp(firebaseConfig);
+                db = getDatabase(app);
+                firebaseReady = true;
+            } catch (error) {
+                console.error("Firebase Initialization Error:", error);
+            }
+        }
+
+        // Initialize Firebase on page load
+        initFirebase();
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (!firebaseReady) {
+                formMessage.style.display = 'block';
+                formMessage.style.color = '#dc2626'; // Red error color
+                formMessage.innerHTML = '<span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">error</span>System is initializing or failed to load. Please try again.';
+                return;
+            }
+
+            // Capture field values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Generate Enquiry ID
+            const randomId = Math.floor(1000000 + Math.random() * 9000000);
+            const enquiryId = `Enquiry-${randomId}`;
+
+            // Loading State
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="material-symbols-outlined" style="animation: pulseGlow 1s infinite;">sync</span> Submitting...';
+            submitBtn.disabled = true;
+            
+            formMessage.style.display = 'none';
+
+            try {
+                const messagesRef = ref(db, 'contactMessages');
+                const newMessageRef = push(messagesRef);
+                
+                await set(newMessageRef, {
+                    enquiryId: enquiryId,
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    message: message,
+                    createdAt: serverTimestamp(),
+                    status: "new"
+                });
+
+                // Success Message
+                formMessage.style.display = 'block';
+                formMessage.style.color = 'var(--md-sys-color-secondary)';
+                formMessage.innerHTML = `<span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">check_circle</span>Your message has been submitted successfully.<br><br>Enquiry ID: ${enquiryId}`;
+                
+                form.reset();
+                
+            } catch (error) {
+                console.error("Submission Error:", error);
+                formMessage.style.display = 'block';
+                formMessage.style.color = '#dc2626';
+                formMessage.innerHTML = '<span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">error</span>An error occurred while submitting your message. Please try again.';
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Hide message after 8 seconds
+                setTimeout(() => {
+                    if (formMessage.style.color !== 'rgb(220, 38, 38)') { // Don't hide error messages automatically
+                        formMessage.style.display = 'none';
+                    }
+                }, 8000);
+            }
+        });
+    </script>
+
+    <!-- JavaScript for Existing Interactivity -->
     <script>
         // Sticky Header & Active States
         const header = document.getElementById('header');
@@ -927,45 +1042,6 @@
             if (e.key === 'Escape') closeLightbox();
             if (e.key === 'ArrowRight') nextImage();
             if (e.key === 'ArrowLeft') prevImage();
-        });
-
-        // Contact Form Mailto Generation
-        const form = document.getElementById('contactForm');
-        const formMessage = document.getElementById('formMessage');
-        const submitBtn = form.querySelector('button[type="submit"]');
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault(); 
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const msg = document.getElementById('message').value;
-            
-            // Generate random 7-digit ID
-            const randomId = Math.floor(1000000 + Math.random() * 9000000);
-            const enquiryId = `Enquiry-${randomId}`;
-            
-            const subjectText = enquiryId;
-            const bodyText = `Hello RD Shikshan Evam Samaj Kalyan Samiti,\n\nI would like to make an enquiry.\n\nName: ${name}\nEmail: ${email}\nMessage:\n${msg}\n\nEnquiry ID: ${enquiryId}\n\nRegards,\n${name}`;
-            
-            const subjectParam = encodeURIComponent(subjectText);
-            const bodyParam = encodeURIComponent(bodyText);
-            
-            const mailtoUrl = `mailto:rdshikshanevamsamajkalyansamit@gmail.com?subject=${subjectParam}&body=${bodyParam}`;
-            
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="material-symbols-outlined" style="animation: pulseGlow 1s infinite;">sync</span> Preparing Email...';
-            
-            setTimeout(() => {
-                formMessage.style.display = 'block';
-                window.location.href = mailtoUrl;
-                submitBtn.innerHTML = originalText;
-                
-                setTimeout(() => {
-                    formMessage.style.display = 'none';
-                    form.reset();
-                }, 4000);
-            }, 800);
         });
     </script>
 </body>
