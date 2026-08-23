@@ -71,8 +71,9 @@
         img { max-width: 100%; height: auto; display: block; border-radius: var(--border-radius-md); }
         
         /* High-Fashion Typography */
-        .display-large { font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 900; letter-spacing: -0.05em; line-height: 1; }
-        .headline-medium { font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.04em; }
+        /* Adjusted clamp values to ensure text fits on narrower screens */
+        .display-large { font-size: clamp(2.2rem, 8vw, 5.5rem); font-weight: 900; letter-spacing: -0.05em; line-height: 1; word-wrap: break-word; }
+        .headline-medium { font-size: clamp(1.8rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.04em; word-wrap: break-word; }
         .title-medium { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
         .body-large { font-size: 1.25rem; color: var(--md-sys-color-on-surface-variant); font-weight: 400; }
         .label-small { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; }
@@ -180,7 +181,8 @@
 
         /* Focus Areas (Bento Grid) */
         .focus-section { padding: var(--section-padding); }
-        .focus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 4rem; }
+        /* Reduced min width for cards to fit mobile screens perfectly */
+        .focus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 4rem; }
         .focus-card { padding: 3.5rem 2.5rem; text-align: center; }
         .focus-card .material-symbols-outlined { 
             font-size: 3rem; color: var(--md-sys-color-primary); margin-bottom: 2rem; 
@@ -337,7 +339,7 @@
         .footer-links a { font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; color: rgba(255,255,255,0.7); }
         .footer-links a:hover { color: var(--md-sys-color-secondary); }
 
-        .footer-bottom { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); width: 100%; font-size: 0.9rem; color: rgba(255,255,255,0.5); display: flex; justify-content: center; flex-wrap: wrap; max-width: 1300px; }
+        .footer-bottom { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); width: 100%; font-size: 0.9rem; color: rgba(255,255,255,0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; max-width: 1300px; text-align: center; gap: 10px; }
 
         /* Staggered Animations */
         .fade-up { opacity: 0; transform: translateY(60px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -356,6 +358,10 @@
             .nav-links { gap: 1rem; }
         }
         @media (max-width: 768px) {
+            /* Force exact scaling rules for mobile constraints */
+            .logo-text { font-size: 1.05rem; }
+            .logo-text span { font-size: 0.65rem; }
+            
             .header { top: 10px; width: 95%; border-radius: 24px; }
             .nav-links {
                 position: fixed; top: 80px; left: -100%; width: 95%; height: auto; padding: 2rem;
@@ -367,6 +373,11 @@
             .hamburger { display: block; padding: 10px; }
             .nav-links .btn { width: 100%; margin-top: 1rem; }
             .hero-inner { min-height: 70vh; padding: 3rem 1.5rem; border-radius: 32px; }
+            
+            /* Ensures Grids convert smoothly without horizontal overflow */
+            .focus-grid, .vision-grid { grid-template-columns: 1fr; }
+            .focus-card { padding: 2rem 1.5rem; } /* Fixed overwhelming padding */
+            
             .involved-section { margin: 0 1rem; border-radius: 32px; padding: 5rem 1.5rem; }
             .contact-card { padding: 1.5rem; }
             .contact-info-row { flex-direction: column; text-align: center; gap: 1rem; }
@@ -797,6 +808,9 @@
         
         <div class="footer-bottom">
             <div>&copy; 2026 RD Shikshan Evam Samaj Kalyan Samiti Bhopal. All rights reserved.</div>
+            <div style="margin-top: 10px; font-weight: 600; color: rgba(255,255,255,0.8); font-size: 0.95rem;">
+                Created by SDTECHSOLUTIONS(Developer of Quera Music)
+            </div>
         </div>
     </footer>
 
